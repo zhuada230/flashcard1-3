@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户运营面试学习闪卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 30px;
+        }
+
+        .progress-fill {
+            background: #4ade80;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+
+        .card-number {
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .difficulty {
+            color: #fbbf24;
+            margin-left: 10px;
+        }
+
+        .section {
+            margin: 25px 0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4b5563;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .scenario-text {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .timer {
+            background: rgba(251, 191, 36, 0.2);
+            color: #92400e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .answer-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .answer-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 12px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checklist input {
+            margin-right: 12px;
+            margin-top: 4px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checklist label {
+            font-size: 16px;
+            line-height: 1.6;
+            cursor: pointer;
+        }
+
+        .score-section {
+            background: #f3f4f6;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .score-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .score-item:last-child {
+            border-bottom: none;
+        }
+
+        .score-item strong {
+            color: #667eea;
+            display: inline-block;
+            min-width: 100px;
+        }
+
+        .score-input-box {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .score-input {
+            width: 100px;
+            padding: 10px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .challenge-box {
+            background: #fef3c7;
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .challenge-box .title {
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .answer-box {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .answer-box .title {
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #4b5563;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .evaluation {
+            display: none;
+        }
+
+        .summary {
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            display: none;
+        }
+
+        .summary h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+
+        .summary-score {
+            font-size: 72px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .summary-level {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .summary-info {
+            background: #f3f4f6;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .summary-advice {
+            background: #f3f4f6;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .summary-advice h3 {
+            margin-bottom: 15px;
+        }
+
+        .summary-advice p {
+            line-height: 1.8;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📇 用户运营面试学习闪卡</h1>
+            <p>系统化检验你的学习效果 · 1-3年经验专用</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress" style="width: 20%"></div>
+        </div>
+
+        <div id="cards"></div>
+
+        <div id="summary" class="summary">
+            <h2>📊 学习效果总评</h2>
+            <div class="summary-score" id="summaryScore">0</div>
+            <div class="summary-level" id="summaryLevel"></div>
+            <div class="summary-info" id="summaryInfo"></div>
+            <div class="summary-advice" id="summaryAdvice"></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="location.reload()" style="max-width: 300px; margin: 0 auto;">🔄 重新测试</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        const QUESTIONS = [
+            {
+                title: "用户运营理解",
+                difficulty: "⭐⭐⭐⭐⭐",
+                time: 2,
+                scenario: "面试官问：简单说说你对用户运营的理解。",
+                checklist: [
+                    "是否给出了基于实践的定义？",
+                    "是否提到了用户生命周期管理？",
+                    "是否体现了数据驱动思维？",
+                    "是否提供了具体的案例或数据？",
+                    "是否避免了将用户运营等同于客服？"
+                ],
+                standards: [
+                    { range: "90-100分", desc: "定义准确+生命周期视角+数据思维+具体案例+个人方法论" },
+                    { range: "80-89分", desc: "定义准确+生命周期+案例，但数据支撑不足" },
+                    { range: "70-79分", desc: "概念正确但缺乏实践案例" },
+                    { range: "<70分", desc: "概念理解不准确或过于简单" }
+                ],
+                challenge: "如果面试官追问：你觉得用户运营和产品运营的区别是什么？",
+                answer: "用户运营关注用户全生命周期价值，侧重用户分层、个性化服务；产品运营关注产品功能和体验优化，侧重产品数据、功能迭代。"
+            },
+            {
+                title: "核心策略",
+                difficulty: "⭐⭐⭐⭐⭐",
+                time: 3,
+                scenario: "面试官问：用户运营的核心工作和策略是什么？",
+                checklist: [
+                    "是否建立了系统性的策略框架？",
+                    "是否提到了用户洞察和数据分析？",
+                    "是否包含了具体的策略案例和效果数据？",
+                    "是否提到了跨部门协作机制？",
+                    "是否避免了只谈执行手段而缺乏战略思考？"
+                ],
+                standards: [
+                    { range: "90-100分", desc: "完整框架+具体策略+数据验证+协作机制+个人思考" },
+                    { range: "80-89分", desc: "有框架+具体策略+部分数据" },
+                    { range: "70-79分", desc: "策略正确但缺乏系统性" },
+                    { range: "<70分", desc: "策略表面化或缺乏实战经验" }
+                ],
+                challenge: "日活下降20%，请说出3个核心分析维度和2个可能的策略方向",
+                answer: "分析维度：1)用户分群分析 2)行为路径分析 3)时间趋势分析。策略方向：1)新用户激活问题-优化新手引导 2)老用户留存问题-检查产品价值和竞品冲击。"
+            },
+            {
+                title: "用户增长",
+                difficulty: "⭐⭐⭐⭐⭐",
+                time: 4,
+                scenario: "面试官问：分享一个你实现用户增长的案例。",
+                checklist: [
+                    "是否有明确的项目背景和目标？",
+                    "是否描述了问题诊断和数据分析过程？",
+                    "是否有清晰的策略设计？",
+                    "是否提供了具体的增长数据？",
+                    "是否提到了增长质量而非仅关注数量？"
+                ],
+                standards: [
+                    { range: "90-100分", desc: "完整的增长项目（背景+诊断+策略+数据+反思）" },
+                    { range: "80-89分", desc: "项目完整但数据支撑不足" },
+                    { range: "70-79分", desc: "有案例但缺乏策略系统性" },
+                    { range: "<70分", desc: "案例简单或数据缺失" }
+                ],
+                challenge: "这个增长策略在其他场景下是否适用？",
+                answer: "回答框架：1)提炼策略的底层逻辑 2)说明适用条件 3)说明需要调整的地方。例如降低使用门槛适合工具类产品，但内容类产品需要调整为内容推荐优化。"
+            },
+            {
+                title: "用户分层运营",
+                difficulty: "⭐⭐⭐⭐",
+                time: 3,
+                scenario: "面试官问：你会如何对用户进行分层，并针对不同层级设计运营策略？",
+                checklist: [
+                    "是否提出了合理的分层模型？",
+                    "是否结合了业务特点和数据指标？",
+                    "是否针对每个层级设计了差异化策略？",
+                    "是否考虑了用户跃迁路径？",
+                    "是否提供了具体的运营案例？"
+                ],
+                standards: [
+                    { range: "90-100分", desc: "完整模型+差异化策略+跃迁机制+实际案例+数据效果" },
+                    { range: "80-89分", desc: "有模型+差异化策略+部分案例" },
+                    { range: "70-79分", desc: "分层合理但策略不够具体" },
+                    { range: "<70分", desc: "分层逻辑不清或缺乏实践" }
+                ],
+                challenge: "如何判断你的分层模型是否有效？",
+                answer: "参考要点：1)各层级用户规模分布是否合理 2)用户跃迁率是否符合预期 3)不同策略的ROI对比 4)整体业务指标提升情况。建议建立AB测试验证机制。"
+            },
+            {
+                title: "用户流失挽回",
+                difficulty: "⭐⭐⭐⭐⭐",
+                time: 4,
+                scenario: "面试官问：如果发现核心用户流失率上升，你会如何分析原因并制定挽回策略？",
+                checklist: [
+                    "是否建立了系统的流失分析框架？",
+                    "是否区分了不同类型的流失？",
+                    "是否设计了预警机制？",
+                    "是否制定了分级挽回策略？",
+                    "是否评估了挽回成本和收益？"
+                ],
+                standards: [
+                    { range: "90-100分", desc: "完整分析框架+预警机制+分级策略+成本评估+实战数据" },
+                    { range: "80-89分", desc: "分析清晰+有策略+部分数据" },
+                    { range: "70-79分", desc: "思路正确但缺乏系统性" },
+                    { range: "<70分", desc: "分析表面或策略单一" }
+                ],
+                challenge: "对于已经流失3个月以上的用户，是否还值得挽回？",
+                answer: "需要综合评估：1)用户历史价值（LTV）2)挽回成本 3)重新激活概率 4)竞品迁移情况。一般建议优先挽回高价值用户，对长期流失用户可尝试低成本触达（如EDM），但不建议投入过多资源。"
+            }
+        ];
+
+        let currentCard = 0;
+        let selectedQuestions = [];
+        let scores = [0, 0, 0, 0, 0];
+
+        function init() {
+            selectedQuestions = getRandomQuestions(5);
+            renderCard(0);
+        }
+
+        function getRandomQuestions(count) {
+            const shuffled = [...QUESTIONS].sort(() => Math.random() - 0.5);
+            return shuffled.slice(0, count);
+        }
+
+        function renderCard(index) {
+            const q = selectedQuestions[index];
+            const cardsDiv = document.getElementById('cards');
+            
+            cardsDiv.innerHTML = `
+                <div class="card">
+                    <div class="card-number">${index + 1} / 5</div>
+                    <h2 class="card-title">
+                        闪卡${index + 1}：${q.title}
+                        <span class="difficulty">${q.difficulty}</span>
+                    </h2>
+
+                    <div class="section">
+                        <div class="section-title">📋 场景模拟</div>
+                        <div class="scenario-text">${q.scenario}</div>
+                        <div class="timer">⏱️ 建议时长：${q.time}分钟</div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">✍️ 你的回答</div>
+                        <textarea class="answer-textarea" id="answer" placeholder="在此输入你的回答..."></textarea>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="showEvaluation()">继续答题 →</button>
+                    </div>
+
+                    <div id="evaluation" class="evaluation">
+                        <div class="section">
+                            <div class="section-title">✅ 自我检测清单</div>
+                            <ul class="checklist">
+                                ${q.checklist.map((item, i) => `
+                                    <li>
+                                        <input type="checkbox" id="check${i}">
+                                        <label for="check${i}">${item}</label>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="section">
+                            <div class="section-title">📊 评分标准</div>
+                            <div class="score-section">
+                                ${q.standards.map(s => `
+                                    <div class="score-item">
+                                        <strong>${s.range}</strong> ${s.desc}
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="score-input-box">
+                                <label style="font-weight: bold; margin-right: 10px;">我的得分：</label>
+                                <input type="number" class="score-input" id="score" min="0" max="100" placeholder="0-100">
+                                <span style="margin-left: 10px; font-weight: bold;">分</span>
+                            </div>
+                        </div>
+
+                        <div class="challenge-box">
+                            <div class="title">💡 追加挑战</div>
+                            <p>${q.challenge}</p>
+                        </div>
+
+                        <div class="answer-box">
+                            <div class="title">📝 参考答案</div>
+                            <p>${q.answer}</p>
+                        </div>
+
+                        <div class="btn-group">
+                            ${index > 0 ? '<button class="btn btn-secondary" onclick="prevCard()">← 上一题</button>' : ''}
+                            ${index < 4 ? 
+                                '<button class="btn btn-primary" onclick="nextCard()">下一题 →</button>' : 
+                                '<button class="btn btn-success" onclick="finish()">查看总评 🎯</button>'
+                            }
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            currentCard = index;
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+        function showEvaluation() {
+            const answer = document.getElementById('answer').value.trim();
+            if (!answer) {
+                showToast('请先输入你的回答');
+                return;
+            }
+            
+            document.getElementById('evaluation').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('evaluation').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function prevCard() {
+            if (currentCard > 0) {
+                renderCard(currentCard - 1);
+            }
+        }
+
+        function nextCard() {
+            const score = parseInt(document.getElementById('score').value);
+            if (!score || score < 0 || score > 100) {
+                showToast('请输入有效的分数（0-100）');
+                return;
+            }
+            
+            scores[currentCard] = score;
+            renderCard(currentCard + 1);
+        }
+
+        function finish() {
+            const score = parseInt(document.getElementById('score').value);
+            if (!score || score < 0 || score > 100) {
+                showToast('请输入有效的分数（0-100）');
+                return;
+            }
+            
+            scores[currentCard] = score;
+            showSummary();
+        }
+
+        function showSummary() {
+            const validScores = scores.filter(s => s > 0);
+            const avg = validScores.reduce((a, b) => a + b, 0) / validScores.length;
+
+            let level, color, advice;
+            if (avg >= 90) {
+                level = '优秀 ✅';
+                color = '#10b981';
+                advice = '<h3>🎉 恭喜你！</h3><p>已充分吸收资料精髓，可以自信面试。建议继续保持，每周复习一次核心框架。</p>';
+            } else if (avg >= 80) {
+                level = '良好 ⭐';
+                color = '#3b82f6';
+                advice = '<h3>👍 做得不错！</h3><p>掌握了核心内容，建议重点复习低于80分的单项，预计再准备3-5天可达到优秀水平。</p>';
+            } else if (avg >= 70) {
+                level = '及格 ⚠️';
+                color = '#fbbf24';
+                advice = '<h3>💪 需要继续努力</h3><p>理解了基本概念，但实战能力需提升。建议结合实际经验重新梳理答案，预计需要1-2周的强化学习。</p>';
+            } else {
+                level = '需重新学习 ❌';
+                color = '#ef4444';
+                advice = '<h3>📚 建议系统学习</h3><p>知识掌握不够扎实，建议从头开始系统学习，预计需要2-3周时间。</p>';
+            }
+
+            document.getElementById('summaryScore').textContent = avg.toFixed(1);
+            document.getElementById('summaryLevel').textContent = level;
+            document.getElementById('summaryLevel').style.color = color;
+            document.getElementById('summaryInfo').textContent = `已完成评分：${validScores.length} / 5 题`;
+            document.getElementById('summaryAdvice').innerHTML = advice;
+
+            document.getElementById('cards').style.display = 'none';
+            document.getElementById('summary').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function updateProgress() {
+            const percent = ((currentCard + 1) / 5) * 100;
+            document.getElementById('progress').style.width = percent + '%';
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
